@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<link rel="stylesheet" href="/css/style.css">
+	<meta charset="UTF-8">
+	<title th:text="#{title2}"></title>
+</head>
+
+<body>
+	<h2 th:text="#{page2WelcomeText}"></h2>
+	<p th:text="#{page2Description}"></p>
+	<div th:unless="${#lists.isEmpty(userData)}">
+		<table class="bordered">
+			<tr>
+				<th></th>
+				<th th:text="#{userID}"></th>
+				<th th:text="#{firstName}"></th>
+				<th th:text="#{lastName}"></th>
+				<th th:text="#{date}"></th>
+				<th th:text="#{company}"></th>
+				<th th:text="#{model}"></th>
+				<th th:text="#{rating}"></th>
+				<th th:text="#{review}"></th>
+			</tr>
+			<tr th:each="u : ${userData}">
+				<td><a th:href="'/delete-user/' + ${u.id}"><img src="/icon/cross-icon.png" width="20"></a></td>
+				<td th:text="${u.id}"></td>
+				<td th:text="${u.firstName}"></td>
+				<td th:text="${u.lastName}"></td>
+				<td th:text="${u.date}"></td>
+				<td th:text="${u.companyOptions}"></td>
+				<td th:text="${u.deviceModel}"></td>
+				<td th:text="${u.rating}"></td>
+				<td th:text="${u.review}"></td>
+			</tr>
+		</table>
+	</div>
+	
+	<div th:if="${#lists.isEmpty(userData)}">
+		<p class="small-italic" th:text="#{noData}"></p>
+	</div>
+
+	<p></p>
+	
+	<div>
+		<table class="box">
+			<tr>
+				<th><a href="/home" th:text="#{createNewReview}"></a></th>
+				<th><img src="/icon/plus-icon.png" width="20"></a></th>
+			</tr>
+		</table>
+	</div>
+	<p><a href="user-list?language=tr">Türkçe</a> | <a href="user-list?language=en">English</a></p>
+</body>

@@ -1,0 +1,1 @@
+create table person(id identity primary key, fname varchar(20), lname varchar(20), td date, cname varchar(20), mname varchar(20), rating varchar(1), review varchar(200));
